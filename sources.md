@@ -1,0 +1,12 @@
+[Multiple View Geometry In Computer Vision](http://cvrs.whu.edu.cn/downloads/ebooks/Multiple%20View%20Geometry%20in%20Computer%20Vision%20(Second%20Edition).pdf)
+
+
+Good Keywords:
++ [Hebbian Learning](https://www.google.com/search?q=hebbian+learning&rlz=1C1GCEU_enUS819US821&oq=hebbian+learning&aqs=chrome..69i57j0l5.1968j0j7&sourceid=chrome&ie=UTF-8)
++ [Spike-timing-dependent plasticity](https://en.wikipedia.org/wiki/Spike-timing-dependent_plasticity)
++ [Cortical Neuron](https://www.youtube.com/watch?v=8VdFf3egwfg)
++ [Grid and Place Cells](https://en.wikipedia.org/wiki/Grid_cell)
++ [SLAM Algorithms Based On Place and Grid Cells Models](https://www.nst.ei.tum.de/fileadmin/w00bqs/www/publications/as/2014WS-HS-SLAMAlgorithmsBasedOnPlaceAndGridCells.pdf)
++ [ORB-SLAM](http://webdiis.unizar.es/~raulmur/orbslam/)
++ [Feature Matching + Homography](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_feature_homography/py_feature_homography.html)
++ [Direct Sparse Odometry (Good for SLAM)](https://github.com/JakobEngel/dso)
