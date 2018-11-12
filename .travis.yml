@@ -7,10 +7,12 @@ env:
 
 install:
   - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+  - lsb_release -sc
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update
   - sudo apt-get upgrade -y
   - sudo apt-get install -y ros-$ROS_DISTRO-ros-base
+  - apt search ros-melodic
   - source /opt/ros/$ROS_DISTRO/setup.bash
 
 script:
