@@ -1,4 +1,7 @@
-[Multiple View Geometry In Computer Vision](http://cvrs.whu.edu.cn/downloads/ebooks/Multiple%20View%20Geometry%20in%20Computer%20Vision%20(Second%20Edition).pdf)
+## Good Things to Read, Courtesy of Paul
+
++ [Multiple View Geometry In Computer Vision](http://cvrs.whu.edu.cn/downloads/ebooks/Multiple%20View%20Geometry%20in%20Computer%20Vision%20(Second%20Edition).pdf)
++ [Mastering OpenCV with Practical Computer Vision Projects (see Ch4 for good applications to this project)](https://www.cs.ccu.edu.tw/~damon/photo/,OpenCV/,Mastering_OpenCV.pdf)
 
 
 Good Keywords:
