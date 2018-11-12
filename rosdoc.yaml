@@ -1,0 +1,4 @@
+- builder: doxygen
+  homepage: https://gitlab.com/breadbot/dso_node
+  javadoc_autobrief: yes
+  file_patterns: '*.hpp *.h'

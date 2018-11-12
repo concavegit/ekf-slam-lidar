@@ -1,0 +1,23 @@
+dist: bionic
+sudo: enabled
+language: python
+
+env:
+  - ROS_DISTRO=melodic
+
+install:
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+  - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+  - sudo apt-get update
+  - sudo apt-get upgrade -y
+  - sudo apt-get install -y ros-$ROS_DISTRO-ros-base
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+
+script:
+  - cd $TRAVIS_BUILD_DIR/..
+  - mkdir -p catkin_ws/src
+  - cp -r $TRAVIS_BUILD_DIR catkin_ws/src
+  - mv catkin_ws $TRAVIS_BUILD_DIR
+  - cd $TRAVIS_BUILD_DIR/catkin_ws
+  - rosdep install -iy --from-paths src
+  - catkin_make
