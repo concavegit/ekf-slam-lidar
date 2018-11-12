@@ -1,4 +1,4 @@
 - builder: doxygen
-  homepage: https://gitlab.com/breadbot/dso_node
+  homepage: https://github.com/concavegit/mono-explorer
   javadoc_autobrief: yes
   file_patterns: '*.hpp *.h'

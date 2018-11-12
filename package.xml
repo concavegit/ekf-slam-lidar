@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>mono_explorer</name>
+  <name>mono-explorer</name>
   <version>0.0.0</version>
-  <description>The dso_node package</description>
+  <description>The mono-explorer package</description>
   <maintainer email="Nikomborirak@todo.todo">Kawin Nikomborirak</maintainer>
   <license>GPLv3</license>
   <author >Kawin Nikomborirak</author>
