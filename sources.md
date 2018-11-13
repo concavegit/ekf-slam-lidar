@@ -17,4 +17,6 @@ Good Keywords:
 Good Sources Specifically for Our Project:
 + [Moncular Visual Odometry with OpenCV](https://avisingh599.github.io/vision/monocular-vo/) 
 + [Monocular SLAM](https://www.doc.ic.ac.uk/~ab9515/monoslam.html)
++ [LSD-SLAM Code- novel approach that doesn't use keypoints](https://github.com/tum-vision/lsd_slam)
++ [LSD-SLAM Explained](https://vision.in.tum.de/research/vslam/lsdslam)
 
