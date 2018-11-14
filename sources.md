@@ -19,4 +19,5 @@ Good Sources Specifically for Our Project:
 + [Monocular SLAM](https://www.doc.ic.ac.uk/~ab9515/monoslam.html)
 + [LSD-SLAM Code- novel approach that doesn't use keypoints](https://github.com/tum-vision/lsd_slam)
 + [LSD-SLAM Explained](https://vision.in.tum.de/research/vslam/lsdslam)
++ [Kalman Filter Explained - Uses a bit of bayesian and a lot from class](http://web.mit.edu/kirtley/kirtley/binlustuff/literature/control/Kalman%20filter.pdf)
 
