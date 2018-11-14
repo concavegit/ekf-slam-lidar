@@ -20,6 +20,7 @@ Good Sources Specifically for Our Project:
 + [LSD-SLAM Code- novel approach that doesn't use keypoints](https://github.com/tum-vision/lsd_slam)
 + [LSD-SLAM Explained- paper, assumes more understanding than we currently have, need supplemental resources in order to understand](https://vision.in.tum.de/research/vslam/lsdslam)
 + [High level explaination of LSD-SLAM and comparison to ORB-SLAM](https://medium.com/@j.zijlmans/lsd-slam-vs-orb-slam2-a-literature-based-comparison-20732df431d)
++ [LSD-SLAM explained with more pictures](http://videolectures.net/site/normal_dl/tag=921114/eccv2014_engel_monocular_slam_01.pdf)
 + [Kalman Filter Explained - Uses a bit of bayesian and a lot from class](http://web.mit.edu/kirtley/kirtley/binlustuff/literature/control/Kalman%20filter.pdf)
 + [C++ Implementatiion of Kalman Filters](https://github.com/hmartiro/kalman-cpp)
 
