@@ -23,4 +23,4 @@ Good Sources Specifically for Our Project:
 + [LSD-SLAM explained with more pictures](http://videolectures.net/site/normal_dl/tag=921114/eccv2014_engel_monocular_slam_01.pdf)
 + [Kalman Filter Explained - Uses a bit of bayesian and a lot from class](http://web.mit.edu/kirtley/kirtley/binlustuff/literature/control/Kalman%20filter.pdf)
 + [C++ Implementatiion of Kalman Filters](https://github.com/hmartiro/kalman-cpp)
-
++ [Which SLAM method to use?](https://www.researchgate.net/post/What_are_different_SLAM_methods_for_robotic_navigation_and_what_are_their_pros_and_cons)
