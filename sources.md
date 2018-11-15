@@ -16,6 +16,7 @@ Good Keywords:
 
 Good Sources Specifically for Our Project:
 + [Moncular Visual Odometry with OpenCV](https://avisingh599.github.io/vision/monocular-vo/) 
++ [Essential Matrix Explained](http://www.cse.psu.edu/~rtc12/CSE486/lecture19.pdf)
 + [Monocular SLAM - written very granular and has all details we need, relatively easy read](https://www.doc.ic.ac.uk/~ab9515/monoslam.html)
 + [LSD-SLAM Code- novel approach that doesn't use keypoints](https://github.com/tum-vision/lsd_slam)
 + [LSD-SLAM Explained- paper, assumes more understanding than we currently have, need supplemental resources in order to understand](https://vision.in.tum.de/research/vslam/lsdslam)
