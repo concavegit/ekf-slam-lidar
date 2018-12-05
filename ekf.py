@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 # Calculate Ground Truth
-dt = 0.01
+dt = 0.033
 ts = np.arange(0, 1.5 * np.pi, dt)
 xs = 2 * (1 - np.cos(ts)) * np.cos(ts)
 ys = 2 * (1 - np.cos(ts)) + np.sin(ts)
@@ -20,7 +20,7 @@ measureA = points - pointA[:, np.newaxis]
 measureB = points - pointB[:, np.newaxis]
 
 # Noise standard deviation
-noise = 0.1
+noise = .1
 mean = 0
 
 # Noisy measurements
@@ -57,7 +57,7 @@ def kalman(x, P, measurement, R, Q):
 
     # Update
     y = measurement - hx(xHat, pointA)
-    S = np.dot(np.dot(H, P), H.T) + R
+    S = np.dot(np.dot(H, PHat), H.T) + R
     K = np.dot(np.dot(PHat, H.T), np.linalg.inv(S))
 
     xNew = xHat + np.dot(K, y)
@@ -70,7 +70,7 @@ def kalmanSim():
     x = np.array([1, 0, 0, 0, 0])
     P = np.diag([0.1, 0.1, .1, .1, .1])
     R = np.eye(2) * noise
-    Q = np.eye(P.shape[0]) / 1e4
+    Q = np.eye(P.shape[0]) / 1e3
 
     result = []
     for measurement in noisyA.T:

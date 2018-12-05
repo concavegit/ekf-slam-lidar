@@ -32,7 +32,7 @@ def kalman(x, P, measurement, R, F, H, Q):
 
     # Update
     y = measurement - np.dot(H, xHat)
-    S = np.dot(np.dot(H, P), H.T) + R
+    S = np.dot(np.dot(H, PHat), H.T) + R
     K = np.dot(np.dot(PHat, H.T), np.linalg.inv(S))
 
     xNew = x + np.dot(K, y)
