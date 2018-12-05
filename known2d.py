@@ -45,8 +45,8 @@ def kalman(x, P, measurement, R, F, H):
 
 
 def kalmanSim():
-    x = np.array([1, 0, 0, 0, 0, 0, 1])
-    P = np.diag([0.1, 0.1, 1, 1, 1, 1, 1])
+    x = np.array([1, 0, 0, 0])
+    P = np.diag([0.1, 0.1, 1, 1])
     R = np.eye(2) * noise
     F = np.array(
         [[1, 0, dt, 0],
