@@ -1,4 +1,0 @@
-- builder: doxygen
-  homepage: https://github.com/concavegit/mono-explorer
-  javadoc_autobrief: yes
-  file_patterns: '*.hpp *.h'

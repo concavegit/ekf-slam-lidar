@@ -1,3 +1,0 @@
-#+title: Moncular Explorer
-
-[[https://travis-ci.com/concavegit/mono-explorer][https://travis-ci.com/concavegit/mono-explorer.svg?branch=master]]
