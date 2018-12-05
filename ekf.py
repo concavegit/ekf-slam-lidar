@@ -30,9 +30,9 @@ noisyB = measureA + np.random.normal(mean, noise, measureA.shape)
 
 def FJacobian(x):
     return np.array(
-        [[1, 0, - x[3] * np.sin(x[2]), np.cos(x[2]), 0],
-         [0, 1, x[3] * np.cos(x[2]), np.sin(x[2]), 0],
-         [0, 0, 1, 0, 1],
+        [[1, 0, - x[3] * np.sin(x[2]) * dt, np.cos(x[2]) * dt, 0],
+         [0, 1, x[3] * np.cos(x[2]) * dt, np.sin(x[2]) * dt, 0],
+         [0, 0, 1, 0, dt],
          [0, 0, 0, 1, 0],
          [0, 0, 0, 0, 1]])
 
@@ -70,7 +70,7 @@ def kalmanSim():
     x = np.array([1, 0, 0, 0, 0])
     P = np.diag([0.1, 0.1, .1, .1, .1])
     R = np.eye(2) * noise
-    Q = np.eye(P.shape[0]) / 1e3
+    Q = np.eye(P.shape[0]) / 1e2
 
     result = []
     for measurement in noisyA.T:
