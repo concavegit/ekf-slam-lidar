@@ -25,7 +25,7 @@ mean = 0
 noisyA = measureA + np.random.normal(mean, noise, measureA.shape)
 
 
-def kalman(x, P, measurement, R, F, H):
+def kalman(x, P, measurement, R, F, H, Q):
     # Prior mean
     # Calculate residual
     y = measurement - np.dot(H, x)
@@ -39,14 +39,14 @@ def kalman(x, P, measurement, R, F, H):
     # Prediction
     xHat = x + np.dot(K, y)
     PNew = np.dot(np.eye(K.shape[0]) - np.dot(K, H), P)
-    PHat = np.dot(np.dot(F, PNew), F.T)
+    PHat = np.dot(np.dot(F, PNew), F.T) + Q
 
     return xHat, PHat
 
 
 def kalmanSim():
     x = np.array([1, 0, 0, 0])
-    P = np.diag([0.1, 0.1, 1, 1])
+    P = np.diag([0.1, 0.1, .01, .01])
     R = np.eye(2) * noise
     F = np.array(
         [[1, 0, dt, 0],
@@ -58,9 +58,11 @@ def kalmanSim():
         [[1, 0, 0, 0],
          [0, 1, 0, 0]])
 
+    Q = np.eye(P.shape[0]) / 100
+
     result = []
     for measurement in noisyA.T:
-        x, P = kalman(x, P, measurement, R, F, H)
+        x, P = kalman(x, P, measurement, R, F, H, Q)
         result.append(x[:2])
 
     return np.array(result).T
@@ -74,3 +76,4 @@ ax.plot(simRes[0], simRes[1])
 
 ax.legend(['Ground Truth', 'Noisy Measurements', 'Predicted'])
 ax.figure.savefig('comparison.png')
+plt.show()
