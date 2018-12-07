@@ -45,17 +45,17 @@ class RosSlam:
         @param landmarks array of shape (n, 2) denoting the locations
         of the beacons
 
-        @return the landmarks from left to right in the odom frame
+        @return landmarks ordered by least squared distance from
+        corresponding stored landmarks
         '''
 
         rotation = np.array(
             [[np.cos(x[2]), -np.sin(x[2])],
              [np.sin(x[2]), np.cos(x[2])]])
 
-        translated = np.dot(rotation, landmarks.T).T
-        translated += x[:2]
+        rotated = np.dot(rotation, landmarks.T).T
+        translated = rotated + x[:2]
 
-        # perms = np.array(list(permutations(translated)))
         perms = np.array([list(permutations(range(landmarks.shape(0))))])
         return landmarks[perms[(np.linalg.norm(x[-6:].reshape(-1, 2) - translated[perms], axis=2)**2).sum(1).argmin()]]
 
