@@ -57,18 +57,11 @@ def kalman(x, P, measurement, R, Q):
 # Calculate Ground Truth
 dt = 0.033
 ts = np.arange(0, 1.5 * np.pi, dt)
-# xs = ts * 0
-# ys = ts * 0
 xs = 2 * (1 - np.cos(ts)) * np.cos(ts)
 ys = 2 * (1 - np.cos(ts)) + np.sin(ts)
 
 points = np.stack([xs, ys])
 
-# Location of landmarks
-pointA = np.array([0, 0])
-pointB = np.array([0, 1])
-pointC = np.array([1, -2])
-# beacons = np.stack([pointA, pointB, pointC])
 noise = 0.1
 beaconNoise = 2
 mean = 0
@@ -95,7 +88,7 @@ def kalmanSim():
                  beaconNoise, beaconNoise, beaconNoise, beaconNoise])
     R = np.eye(6) * noise
     # Q = np.eye(P.shape[0]) / 1e3
-    Q = np.diag([.03, .03, .03, .03, .03, .001, .001, .001, .001, .001, .001])
+    Q = np.diag([.01, .01, .01, .01, .01, .001, .001, .001, .001, .001, .001])
 
     result = []
     for measurement in measurements:
@@ -115,7 +108,7 @@ ax.plot(simRes[0], simRes[1])
 ax.plot(simRes[5], simRes[6])
 ax.plot(simRes[7], simRes[8])
 ax.plot(simRes[9], simRes[10])
-ax.scatter(beacons[:, 0], beacons[:, 1], marker=(5, 1), s=100)
+ax.scatter(beacons[:, 0], beacons[:, 1], marker=(5, 1), s=200)
 
 ax.legend(['Ground Truth', 'Predicted Odometry', 'Predicted Beacon 1',
            'Predicted Beacon 2', 'Predicted Beacon 3', 'Actual Beacons'])
