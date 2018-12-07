@@ -88,7 +88,7 @@ def kalmanSim():
                  beaconNoise, beaconNoise, beaconNoise, beaconNoise])
     R = np.eye(6) * noise
     # Q = np.eye(P.shape[0]) / 1e3
-    Q = np.diag([.01, .01, .01, .01, .01, .001, .001, .001, .001, .001, .001])
+    Q = np.diag([.01, .01, .01, .01, .01, .0, .0, .0, .0, .0, .0])
 
     result = []
     for measurement in measurements:
