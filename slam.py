@@ -89,10 +89,10 @@ measurements = np.vstack([noisyA, noisyB, noisyC]).T
 
 def kalmanSim():
     x = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    P = np.diag([1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3])
+    P = np.diag([0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1])
     R = np.eye(6) * noise
     # Q = np.eye(P.shape[0]) / 1e3
-    Q = np.diag([1e5, 1e5, 1e5, 1e5, 1e5, .001, .001, .001, .001, .001, .001])
+    Q = np.diag([.1, .1, .1, .01, .01, .001, .001, .001, .001, .001, .001])
 
     result = []
     for measurement in measurements:
@@ -108,13 +108,10 @@ simRes = kalmanSim()
 ax = plt.gca()
 ax.set_aspect('equal')
 ax.plot(xs, ys)
-# ax.scatter(noisyA[0], noisyA[1])
 ax.plot(simRes[0], simRes[1])
 ax.plot(simRes[5], simRes[6])
 ax.plot(simRes[7], simRes[8])
 ax.plot(simRes[9], simRes[10])
-ax.set_xlim(-4, 4)
-ax.set_ylim(-4, 4)
 
 ax.legend(['Ground Truth', 'Predicted Odometry', 'Predicted Beacon 1',
            'Predicted Beacon 2', 'Predicted Beacon 3'])
