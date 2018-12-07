@@ -3,6 +3,7 @@ import rospy
 import numpy as np
 from geometry_msgs.msg import PoseWithCovariance
 from tf.transformations import quaternion_from_euler
+from itertools import permutations
 
 from sensor_msgs.point_cloud2 import read_points, create_cloud_xyz32
 from sensor_msgs.msg import PointCloud2
@@ -38,7 +39,7 @@ class RosSlam:
 
     def reorderLandmarks(x, landmarks):
         '''
-        Sort the landmarks from left to right in the odom frame
+        Sort the landmarks to least-squares resemble the existing landmarks
 
         @param x the pose of the object
         @param landmarks array of shape (n, 2) denoting the locations
@@ -53,7 +54,10 @@ class RosSlam:
 
         translated = np.dot(rotation, landmarks.T).T
         translated += x[:2]
-        return translated[translated[:, 0].argsort()]
+
+        # perms = np.array(list(permutations(translated)))
+        perms = np.array([list(permutations(range(landmarks.shape(0))))])
+        return landmarks[perms[(np.linalg.norm(x[-6:].reshape(-1, 2) - translated[perms], axis=2)**2).sum(1).argmin()]]
 
     def FJacobian(self, dt):
         return np.array(
@@ -108,3 +112,6 @@ class RosSlam:
             rospy.Header(frame_id='odom', stamp=rospy.Time.now()),
             self.x[-6:].reshape(3, 2))
         self.landmarkPub.publish(cloud)
+
+
+for
