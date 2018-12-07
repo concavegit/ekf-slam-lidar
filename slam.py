@@ -67,17 +67,19 @@ points = np.stack([xs, ys])
 # Location of landmarks
 pointA = np.array([0, 0])
 pointB = np.array([0, 1])
-pointC = np.array([1, 0])
-beacons = np.stack([pointA, pointB, pointC])
+pointC = np.array([1, -2])
+# beacons = np.stack([pointA, pointB, pointC])
+noise = 0.1
+beaconNoise = 2
+mean = 0
+beacons = np.random.normal(mean, beaconNoise, (3, 2))
 
 # Measurements from the marker points
-measureA = pointA[:, np.newaxis] - points
-measureB = pointB[:, np.newaxis] - points
-measureC = pointC[:, np.newaxis] - points
+measureA = beacons[0, :, np.newaxis] - points
+measureB = beacons[1, :, np.newaxis] - points
+measureC = beacons[2, :, np.newaxis] - points
 
 # Noise standard deviation
-noise = 0.1
-mean = 0
 
 # Noisy measurements
 noisyA = measureA + np.random.normal(mean, noise, measureA.shape)
@@ -89,10 +91,11 @@ measurements = np.vstack([noisyA, noisyB, noisyC]).T
 
 def kalmanSim():
     x = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    P = np.diag([0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+    P = np.diag([0, 0, (np.pi / 3) ** 2, 1, 1 / 9, beaconNoise, beaconNoise,
+                 beaconNoise, beaconNoise, beaconNoise, beaconNoise])
     R = np.eye(6) * noise
     # Q = np.eye(P.shape[0]) / 1e3
-    Q = np.diag([.1, .1, .1, .01, .01, .001, .001, .001, .001, .001, .001])
+    Q = np.diag([.03, .03, .03, .03, .03, .001, .001, .001, .001, .001, .001])
 
     result = []
     for measurement in measurements:
@@ -112,8 +115,9 @@ ax.plot(simRes[0], simRes[1])
 ax.plot(simRes[5], simRes[6])
 ax.plot(simRes[7], simRes[8])
 ax.plot(simRes[9], simRes[10])
+ax.scatter(beacons[:, 0], beacons[:, 1], marker=(5, 1), s=100)
 
 ax.legend(['Ground Truth', 'Predicted Odometry', 'Predicted Beacon 1',
-           'Predicted Beacon 2', 'Predicted Beacon 3'])
+           'Predicted Beacon 2', 'Predicted Beacon 3', 'Actual Beacons'])
 # ax.figure.savefig('comparison.png')
 plt.show()
