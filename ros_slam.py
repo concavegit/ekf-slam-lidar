@@ -132,6 +132,8 @@ class RosSlam:
         pose.pose.orientation.y = q[1]
         pose.pose.orientation.z = q[2]
         pose.pose.orientation.w = q[3]
+        pose.covariance = np.diag(
+            [self.x[0], self.x[1], 0, 0, 0, self.x[2]]).ravel()
 
         self.posePub.publish(pose)
 
