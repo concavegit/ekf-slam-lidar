@@ -115,6 +115,3 @@ class RosSlam:
             rospy.Header(frame_id='odom', stamp=rospy.Time.now()),
             self.x[-6:].reshape(3, 2))
         self.landmarkPub.publish(cloud)
-
-
-for
