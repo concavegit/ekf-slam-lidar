@@ -56,7 +56,7 @@ class RosSlam:
         rotated = np.dot(rotation, landmarks.T).T
         translated = rotated + x[:2]
 
-        perms = np.array([list(permutations(range(landmarks.shape(0))))])
+        perms = np.array(list(permutations(range(landmarks.shape[0]))))
         relativeCoords = x[-6:].reshape(-1, 2) - translated[perms]
         ssd = (relativeCoords**2).sum(2).sum(1)
 
