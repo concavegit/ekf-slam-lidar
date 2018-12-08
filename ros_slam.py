@@ -53,7 +53,7 @@ class RosSlam:
             [[np.cos(x[2]), -np.sin(x[2])],
              [np.sin(x[2]), np.cos(x[2])]])
 
-        rotated = np.dot(rotation, landmarks.T).T
+        rotated = np.dot(landmarks, rotation.T)
         translated = rotated + x[:2]
 
         perms = np.array(list(permutations(range(landmarks.shape[0]))))
