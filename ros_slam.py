@@ -31,7 +31,7 @@ def reorderPoints(reference, points):
     '''
 
     perms = np.array(list(permutations(range(points.shape[0]))))
-    relativeCoords = (reference - points[perms])
+    relativeCoords = reference - points[perms]
     ssd = (relativeCoords**2).sum((2, 1))
 
     return points[perms[ssd.argmin()]]
