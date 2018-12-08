@@ -9,6 +9,34 @@ from sensor_msgs.point_cloud2 import read_points, create_cloud_xyz32
 from sensor_msgs.msg import PointCloud2
 
 
+def reorderPoints(reference, points):
+    '''
+    Sort the points to least-squares resemble the reference points
+
+    @param x the pose of the object
+    @param points array of shape (n, 2) denoting the locations
+    of the beacons
+
+    @return points ordered by least squared distance from
+    corresponding stored points
+
+    Example:
+    >>> reference = np.array([[1,2], [10,9], [5,4]])
+    >>> points = np.array([[4, 5], [3, 2], [8,7]])
+    >>> reorderPoints(reference, points)
+    Out:
+    array([[3, 2],
+           [8, 7],
+           [4, 5]])
+    '''
+
+    perms = np.array(list(permutations(range(points.shape[0]))))
+    relativeCoords = (reference - points[perms])
+    ssd = (relativeCoords**2).sum((2, 1))
+
+    return points[perms[ssd.argmin()]]
+
+
 class RosSlam:
     def __init__(self,
                  R=np.eye(6) * 0.005,
@@ -56,11 +84,7 @@ class RosSlam:
         rotated = np.dot(landmarks, rotation.T)
         translated = rotated + x[:2]
 
-        perms = np.array(list(permutations(range(landmarks.shape[0]))))
-        relativeCoords = x[-6:].reshape(-1, 2) - translated[perms]
-        ssd = (relativeCoords**2).sum((2, 1))
-
-        return landmarks[perms[ssd.argmin()]]
+        return reorderPoints(x[-6:].reshape(-1, 2), translated).ravel()
 
     def FJacobian(self, dt):
         return np.array(
