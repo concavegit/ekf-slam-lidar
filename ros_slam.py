@@ -58,7 +58,7 @@ class RosSlam:
 
         perms = np.array(list(permutations(range(landmarks.shape[0]))))
         relativeCoords = x[-6:].reshape(-1, 2) - translated[perms]
-        ssd = (relativeCoords**2).sum(2).sum(1)
+        ssd = (relativeCoords**2).sum((2, 1))
 
         return landmarks[perms[ssd.argmin()]]
 
