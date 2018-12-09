@@ -3,9 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-dt = 0.033
-
-
 def FJacobian(x):
     return np.array(
         [[1, 0, - x[3] * np.sin(x[2]) * dt, np.cos(x[2]) * dt,
