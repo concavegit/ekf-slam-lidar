@@ -1,6 +1,10 @@
 # 1/usr/bin/env python
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.patches import Ellipse
+
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
 
 
 def FJacobian(x):
@@ -88,15 +92,17 @@ def kalmanSim():
     Q = np.diag([.01, .01, .01, .01, .01, .0, .0, .0, .0, .0, .0])
 
     result = []
+    ps = []
     for measurement in measurements:
         print(measurement)
         x, P = kalman(x, P, measurement, R, Q)
         result.append(x)
+        ps.append(P)
 
-    return np.array(result).T
+    return np.array(result).T, np.array(ps)
 
 
-simRes = kalmanSim()
+simRes, Ps = kalmanSim()
 
 ax = plt.gca()
 ax.set_aspect('equal')
@@ -107,7 +113,26 @@ ax.plot(simRes[7], simRes[8])
 ax.plot(simRes[9], simRes[10])
 ax.scatter(beacons[:, 0], beacons[:, 1], marker=(5, 1), s=200)
 
+
+def errEllipse(mu, cov, factor=1):
+    U, S, V = np.linalg.svd(cov)
+    theta = np.degrees(np.arctan2(U[1, 0], U[0, 0]))
+    return Ellipse(xy=mu,
+                   width=2 * np.sqrt(S[0]) * factor,
+                   height=2 * np.sqrt(S[1]) * factor,
+                   angle=theta,
+                   edgecolor='black')
+
+
 ax.legend(['Ground Truth', 'Predicted Odometry', 'Predicted Beacon 1',
            'Predicted Beacon 2', 'Predicted Beacon 3', 'Actual Beacons'])
-# ax.figure.savefig('comparison.png')
+
+for i in range(0, Ps.shape[0], 5):
+    ellipse = errEllipse(simRes[:2, i], Ps[i], factor=0.5)
+    ax.add_patch(ellipse)
+
+ax.set_xlabel('x position (m)')
+ax.set_ylabel('y position (m)')
+# ax.add_patch(test)
+ax.figure.savefig('comparison.png')
 plt.show()
