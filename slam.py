@@ -89,10 +89,10 @@ def kalman(x, P, measurement, R, Q):
     @return the updated state and confidence.
     '''
     F = FJacobian(x)
-    H = HJacobian(x)
 
     xHat = fx(x)
     PHat = np.dot(np.dot(F, P), F.T) + Q
+    H = HJacobian(xHat)
 
     y = measurement - hx(xHat)
     S = np.dot(np.dot(H, PHat), H.T) + R
